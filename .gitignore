@@ -1,0 +1,12 @@
+node_modules
+.next
+.open-next
+.wrangler
+.dev.vars
+.env*
+!.env.example
+.env.local
+*.tsbuildinfo
+*Zone.Identifier
+next-env.d.ts
+cloudflare-env.d.ts

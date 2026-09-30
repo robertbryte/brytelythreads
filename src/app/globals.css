@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "./brand.css";
+
+/* Tailwind v4: map brand tokens so utilities like bg-paper / text-muted work. */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-bright: var(--bright);
+  --font-display: var(--f-display);
+  --font-mono: var(--f-mono);
+}

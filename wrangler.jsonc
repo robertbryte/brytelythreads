@@ -1,0 +1,40 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "brytely-threads",
+  // Worker entry = OpenNext's Next.js handler + our cron handler.
+  "main": "custom-worker.ts",
+  "compatibility_date": "2025-09-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "brytely-threads" }],
+
+  // `wrangler d1 create brytely-threads` → paste the id here
+  "d1_databases": [
+    { "binding": "DB", "database_name": "brytely-threads", "database_id": "REPLACE_WITH_D1_ID", "migrations_dir": "migrations" }
+  ],
+  // `wrangler kv namespace create CATALOG_CACHE` → paste the id here
+  "kv_namespaces": [{ "binding": "CATALOG_CACHE", "id": "REPLACE_WITH_KV_ID" }],
+  // `wrangler r2 bucket create brytely-media`
+  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "brytely-media" }],
+
+  // Hourly: retry any stuck orders, poll open orders, then re-sync the catalog.
+  "triggers": { "crons": ["7 * * * *"] },
+
+  // Non-secret config. Secrets go in via `wrangler secret put` (see README).
+  "vars": {
+    "SITE_URL": "https://brytelythreads.shop",
+    "EMAIL_FROM": "Brytely Threads <orders@brytelythreads.shop>",
+    "ADMIN_ALERT_EMAIL": "you@example.com",
+    "PRINTIFY_SEND_TO_PRODUCTION": "false",
+    "PRINTIFY_SHIPPING_METHOD": "1",
+    "CATALOG_MODE": "all_visible",
+    "SHIPPING_COUNTRIES": "US",
+    "SHIPPING_RATES": "[{\"label\":\"Standard\",\"amount\":499,\"additional\":200,\"minDays\":5,\"maxDays\":10,\"freeOver\":7500}]",
+    "STRIPE_AUTOMATIC_TAX": "false",
+    "MIRROR_IMAGES": "true",
+    "MAX_IMAGES_PER_PRODUCT": "10"
+  },
+
+  "observability": { "enabled": true }
+}
