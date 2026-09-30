@@ -11,10 +11,10 @@
 
   // `wrangler d1 create brytely-threads` → paste the id here
   "d1_databases": [
-    { "binding": "DB", "database_name": "brytely-threads", "database_id": "REPLACE_WITH_D1_ID", "migrations_dir": "migrations" }
+    { "binding": "DB", "database_name": "brytely-threads", "database_id": "78854968-7105-4e83-b34c-2761ad0da564", "migrations_dir": "migrations" }
   ],
   // `wrangler kv namespace create CATALOG_CACHE` → paste the id here
-  "kv_namespaces": [{ "binding": "CATALOG_CACHE", "id": "REPLACE_WITH_KV_ID" }],
+  "kv_namespaces": [{ "binding": "CATALOG_CACHE", "id": "dc389d43187f4ec78c585eabd9591649" }],
   // `wrangler r2 bucket create brytely-media`
   "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "brytely-media" }],
 
