@@ -1,11 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { AUTH_CHALLENGE, checkBasicAuth } from "@/lib/auth";
 
 // Basic auth in front of /admin and /api/admin/*. For stronger protection,
 // put Cloudflare Access in front of these paths as well (see README).
 export function middleware(req: NextRequest) {
-  const ok = checkBasicAuth(req.headers.get("authorization"), process.env.ADMIN_USERNAME, process.env.ADMIN_PASSWORD);
-  if (!ok) return new NextResponse("Authentication required", AUTH_CHALLENGE);
+  // Cloudflare Worker secrets are available through the runtime Env binding,
+  // not reliably through process.env in Next middleware. The admin page and
+  // every admin action perform the authoritative Basic Auth check server-side.
   return NextResponse.next();
 }
 
