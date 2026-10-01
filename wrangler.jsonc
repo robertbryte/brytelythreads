@@ -32,7 +32,7 @@
     "CATALOG_MODE": "all_visible",
     "SHIPPING_COUNTRIES": "US",
     "SHIPPING_RATES": "[{\"label\":\"Standard\",\"amount\":499,\"additional\":200,\"minDays\":5,\"maxDays\":10,\"freeOver\":7500}]",
-    "STRIPE_AUTOMATIC_TAX": "false",
+    "STRIPE_AUTOMATIC_TAX": "true",
     "MIRROR_IMAGES": "true",
     "MAX_IMAGES_PER_PRODUCT": "10"
   },
