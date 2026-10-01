@@ -102,7 +102,7 @@ async function buildIndex(env: Env): Promise<CatalogIndex> {
   const products = results.map(toSummary);
 
   const { results: tagRows } = await env.DB.prepare(
-    `SELECT slug, name FROM tags WHERE show_in_nav = 1 ORDER BY sort_order ASC, name ASC`,
+    `SELECT slug, name FROM tags WHERE show_in_nav = 1 ORDER BY sort_order ASC, name ASC LIMIT 5`,
   ).all<{ slug: string; name: string }>();
   const counts = new Map<string, number>();
   for (const p of products) for (const t of p.tags) counts.set(t, (counts.get(t) ?? 0) + 1);

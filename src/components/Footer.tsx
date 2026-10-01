@@ -24,6 +24,7 @@ export function Footer() {
           <ul>
             <li><Link href="/orders">Order status</Link></li>
             <li><Link href="/shop">Sizing is on each product page</Link></li>
+            <li><Link href="/admin">Admin</Link></li>
           </ul>
         </div>
       </div>
